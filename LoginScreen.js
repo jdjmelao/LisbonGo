@@ -20,7 +20,7 @@ export default class LoginScreen extends React.Component{
         if (email.length == 0) {
             alert("wow");
         }else{
-
+            
             var InsertAPIURL = "http://10.90.3.0/login.php";
 
             var header = {
@@ -47,6 +47,7 @@ export default class LoginScreen extends React.Component{
             .then((response)=>{
                 console.log(response[0].Message);
                 if (response[0].Message == "200"){
+                    
                     this.setState({id:response[0].id});
                     this.setState({email:response[0].email});
                     this.setState({first_name:response[0].first_name});
@@ -55,16 +56,8 @@ export default class LoginScreen extends React.Component{
                     this.setState({phone:response[0].phone});
                     this.setState({photo:response[0].photo});
                     this.setState({qr:response[0].qr});
-                    this.props.navigation.navigate('Menu', { 
-                        id: this.state.id,
-                        first_name: this.state.first_name,
-                        last_name: this.state.last_name,
-                        email: this.state.email,
-                        birthday: this.state.birthday,
-                        phone: this.state.phone,
-                        qr: this.state.qr,
-                        photo: this.state.photo
-                    } );
+                    this.props.navigation.navigate('Menu');
+                    console.log("logged")
                     
                 }
 
